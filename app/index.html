@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Insight Generator</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="badge">✦ AI POWERED DATA ANALYTICS</div>
+        <h1>AI Data Insight Generator</h1>
+        <p class="subtitle">Upload almost any structured CSV. The app cleans the data, detects column types, chooses useful analyses, visualizes patterns, and generates dataset-specific insights.</p>
+    </header>
+
+    <section class="upload-card">
+        <div class="upload-left">
+            <div class="upload-icon">↑</div>
+            <div>
+                <h2>Upload any CSV dataset</h2>
+                <p>No fixed Sales / Profit / Region schema. The analyzer automatically adapts to the columns in your file.</p>
+            </div>
+        </div>
+        <div class="upload-right">
+            <input type="file" id="fileInput" accept=".csv">
+            <button class="primary-btn" onclick="uploadFile()">Analyze CSV</button>
+        </div>
+        <div id="uploadStatus" class="upload-status"></div>
+    </section>
+
+    <section id="cleaningReport" class="cleaning-card hidden">
+        <div class="cleaning-heading">
+            <div>
+                <span class="section-kicker">DATA QUALITY</span>
+                <h2>Automatic Data Cleaning</h2>
+                <p id="cleaningSummary">Preparing your dataset...</p>
+            </div>
+            <span class="cleaning-icon">✓</span>
+        </div>
+        <ul id="cleaningList" class="cleaning-list"></ul>
+    </section>
+
+    <section class="dataset-head">
+        <div>
+            <span class="section-kicker">AUTO DETECTION</span>
+            <h2 id="datasetTitle">Dataset</h2>
+            <p id="detectedSummary">Detecting schema...</p>
+        </div>
+    </section>
+
+    <section id="kpiGrid" class="kpi-grid"></section>
+
+    <section>
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">AUTO VISUALIZATION</span>
+                <h2>Insights & Visualizations</h2>
+                <p>Charts are selected from the detected dates, numeric fields, categories and relationships.</p>
+            </div>
+        </div>
+        <div id="chartsGrid" class="charts-grid"></div>
+    </section>
+
+    <section class="profile-card">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">DATA UNDERSTANDING</span>
+                <h2>Detected Column Profile</h2>
+                <p>See how the analyzer interpreted each field before generating insights.</p>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>Column</th><th>Type</th><th>Unique</th><th>Missing</th></tr></thead>
+                <tbody id="profileBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="ai-card">
+        <div>
+            <span class="section-kicker">GENAI</span>
+            <h2>Dataset-Specific AI Insights</h2>
+            <p>Gemini receives the detected schema and statistical summary instead of assuming the file is a sales dataset.</p>
+        </div>
+        <button id="aiButton" class="primary-btn" onclick="generateAIInsights()">Generate AI Insights</button>
+        <div class="rule-box">
+            <h3>Automatic statistical findings</h3>
+            <div id="ruleInsights"></div>
+        </div>
+        <div id="aiInsights" class="ai-insights hidden"></div>
+    </section>
+
+    <div class="data-status"><span class="status-dot"></span><span id="dataStatus">Loading dataset...</span></div>
+    <footer>
+        <div class="footer-line"></div>
+        <p>AI Data Insight Generator</p>
+        <span>Python • Pandas • Flask • Chart.js • Gemini AI</span>
+    </footer>
+</div>
+<script src="/script.js"></script>
+</body>
+</html>
